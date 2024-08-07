@@ -25,9 +25,11 @@ public class Philosopher extends BaseThread
 	{
 		try
 		{
+			System.out.println("Philosopher "+ this.iTID + " is eating");
 			// ...
 			sleep((long)(Math.random() * TIME_TO_WASTE));
 			// ...
+			System.out.println("Philosopher "+ this.iTID + " is done eating");
 		}
 		catch(InterruptedException e)
 		{
@@ -94,7 +96,7 @@ public class Philosopher extends BaseThread
 				// ...
 			}
 
-			yield();
+			Thread.yield();
 		}
 	} // run()
 
@@ -110,7 +112,7 @@ public class Philosopher extends BaseThread
 			"You know, true is false and false is true if you think of it",
 			"2 + 2 = 5 for extremely large values of 2...",
 			"If thee cannot speak, thee must be silent",
-			"My number is " + getTID() + ""
+			"My number is " + getTID()+ " "
 		};
 
 		System.out.println
