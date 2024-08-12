@@ -48,6 +48,50 @@ public class DiningPhilosophers
 			 */
 			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
 
+			// user enters a number on the command line
+			if(argv.length > 0)
+			{
+				try
+				{
+					// if the number is a decimal
+					if(argv[0].contains(".")) {
+						System.out.println("java DiningPhilosophers -" + argv[0]);
+						System.out.println(argv[0] + " is not a positive decimal integer .");
+						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
+						System.exit(0);
+					}
+
+					// if the number is a negative integer
+					int number = Integer.parseInt(argv[0]);
+					if(number < 0) {
+						System.out.println(argv[0] + " is not a positive integer number.");
+						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
+						System.exit(0);
+					}
+
+					// if the number is zero
+					if(number == 0) {
+						System.out.println(argv[0] + " is a zero.");
+						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
+						System.exit(0);
+					}
+
+
+					else
+					{
+						iPhilosophers = number;
+					}
+
+				}
+
+				// if anything other than a number is entered
+				catch(NumberFormatException e){
+					System.out.println(argv[0] + " is a string.");
+					System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
+					System.exit(0);
+				}
+			}
+
 			// Make the monitor aware of how many philosophers there are
 			soMonitor = new Monitor(iPhilosophers);
 
