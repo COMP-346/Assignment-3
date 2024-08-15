@@ -1,11 +1,13 @@
 import common.BaseThread;
 
 /**
- * Class Philosopher.
- * Outlines main subrutines of our virtual philosopher.
+ * Class Philosophers
+ * The main starter.
  *
- * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
+ * @author Ricardo RAJI CHAHINE 40234410
+ * @author Mathys Loiselle 40242303
  */
+
 public class Philosopher extends BaseThread
 {
 	/**
@@ -124,9 +126,9 @@ public class Philosopher extends BaseThread
 		{
 			"Eh, it's not easy to be a philosopher: eat, think, talk, eat...",
 			"You know, true is false and false is true if you think of it",
-			"2 + 2 = 5 for extremely large values of 2...",
-			"If thee cannot speak, thee must be silent",
-			"My number is " + getTID()+ " "
+			"2 + 2 = 5, but only for really big twos...",
+			"If thou canst not speak, thou must yield().",
+			"My essence is distilled in this number: " + getTID()+ " "
 		};
 
 		System.out.println

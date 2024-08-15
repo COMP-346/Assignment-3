@@ -2,8 +2,12 @@
  * Class DiningPhilosophers
  * The main starter.
  *
- * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
+ * @author Ricardo RAJI CHAHINE 40234410
+ * @author Mathys Loiselle 40242303
  */
+
+import java.util.Scanner;
+
 public class DiningPhilosophers
 {
 	/*
@@ -37,60 +41,42 @@ public class DiningPhilosophers
 	/**
 	 * Main system starts up right here
 	 */
-	public static void main(String[] argv)
-	{
-		try
-		{
-			/*
-			 * TODO:
-			 * Should be settable from the command line
-			 * or the default if no arguments supplied.
-			 */
-			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+	public static void main(String[] argv) {
+		try {
+			int iPhilosophers;
 
-			// user enters a number on the command line
-			if(argv.length > 0)
-			{
-				try
-				{
-					// if the number is a decimal
-					if(argv[0].contains(".")) {
-						System.out.println("java DiningPhilosophers -" + argv[0]);
-						System.out.println(argv[0] + " is not a positive decimal integer .");
-						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
-						System.exit(0);
+			// Use Scanner to get user input
+			Scanner scanner = new Scanner(System.in);
+			System.out.print("Enter the number of philosophers: ");
+
+			// Read and validate the input
+			while (true) {
+				String input = scanner.nextLine();
+
+				try {
+					if (input.isEmpty()) {
+						iPhilosophers= DEFAULT_NUMBER_OF_PHILOSOPHERS;
+						System.out.println("The default number of Philosophers was used: "+ DEFAULT_NUMBER_OF_PHILOSOPHERS+"\n");
+						break;
 					}
 
-					// if the number is a negative integer
-					int number = Integer.parseInt(argv[0]);
-					if(number < 0) {
-						System.out.println(argv[0] + " is not a positive integer number.");
-						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
-						System.exit(0);
-					}
+					int number = Integer.parseInt(input);
 
-					// if the number is zero
-					if(number == 0) {
-						System.out.println(argv[0] + " is a zero.");
-						System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
-						System.exit(0);
-					}
-
-
-					else
-					{
+					if (number <= 0) {
+						System.out.println(input + " is not a positive integer number.");
+						System.out.print("Please enter a valid number of philosophers: ");
+					} else {
 						iPhilosophers = number;
+						break;
 					}
-
-				}
-
-				// if anything other than a number is entered
-				catch(NumberFormatException e){
-					System.out.println(argv[0] + " is a string.");
-					System.out.println("\nUsage: java DiningPhilosophers [NUMBER_OF_PHILOSOPHERS]");
-					System.exit(0);
+				} catch (NumberFormatException e) {
+					System.out.println(input + " is not a valid integer.");
+					System.out.print("Please enter a valid number of philosophers: ");
 				}
 			}
+
+			// Close the scanner as it's no longer needed
+			scanner.close();
 
 			// Make the monitor aware of how many philosophers there are
 			soMonitor = new Monitor(iPhilosophers);
@@ -99,32 +85,25 @@ public class DiningPhilosophers
 			Philosopher aoPhilosophers[] = new Philosopher[iPhilosophers];
 
 			// Let 'em sit down
-			for(int j = 0; j < iPhilosophers; j++)
-			{
+			for (int j = 0; j < iPhilosophers; j++) {
 				aoPhilosophers[j] = new Philosopher();
 				aoPhilosophers[j].start();
 			}
 
-			System.out.println
-			(
-				iPhilosophers +
-				" philosopher(s) came in for a dinner."
-			);
+			System.out.println(iPhilosophers + " philosopher(s) came in for dinner.");
 
 			// Main waits for all its children to die...
-			// I mean, philosophers to finish their dinner.
-			for(int j = 0; j < iPhilosophers; j++)
+			for (int j = 0; j < iPhilosophers; j++)
 				aoPhilosophers[j].join();
 
 			System.out.println("All philosophers have left. System terminates normally.");
-		}
-		catch(InterruptedException e)
-		{
+		} catch (InterruptedException e) {
 			System.err.println("main():");
 			reportException(e);
 			System.exit(1);
 		}
-	} // main()
+	}
+	// main()
 
 	/**
 	 * Outputs exception information to STDERR

@@ -2,10 +2,12 @@ import java.util.PriorityQueue;
 
 /**
  * Class Monitor
- * To synchronize dining philosophers.
+ * The main starter.
  *
- * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
+ * @author Ricardo RAJI CHAHINE 40234410
+ * @author Mathys Loiselle 40242303
  */
+
 public class Monitor
 {
 	/*

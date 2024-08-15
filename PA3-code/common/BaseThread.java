@@ -4,17 +4,11 @@ import java.util.Random;
 
 /**
  * Class BaseThread
- * Simply one customized base class for many of our own threads.
  *
- * An attempt to maintain an automatic unique TID (thread ID)
- * among all the derivatives and allow setting your own if needed.
- * Plus some methods for the sync exercises.
- *
- * $Revision: 1.2 $
- * $Last Revision Date: 2021/03/22 $
- *
- * @author Serguei A. Mokhov, mokhov@cs.concordia.ca
+ * @author Ricardo RAJI CHAHINE 40234410
+ * @author Mathys Loiselle 40242303
  */
+
 public class BaseThread extends Thread
 {
 	/*
